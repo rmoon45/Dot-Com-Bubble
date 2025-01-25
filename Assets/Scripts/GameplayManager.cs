@@ -4,6 +4,7 @@ using System;
 
 public class GameplayManager : MonoBehaviour
 {
+    [Header("Screens and Just Referencing Stuff")]
     [SerializeField] GameObject investorScreen;
     [SerializeField] GameObject makerScreen;
 
@@ -13,8 +14,11 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] GameObject costModule;
 
-    [SerializeField] GameObject moneyPoolUI;
+    [Header("Money referencing")]
+    [SerializeField] GameObject moneyPoolMakerUI;
+    [SerializeField] GameObject moneyPoolInvestorUI;
 
+    [Header("Money Pool and Array")]
     [SerializeField] public int moneyPool;
 
     // array of module options
@@ -43,11 +47,13 @@ public class GameplayManager : MonoBehaviour
 
         MakerLogic makerLogic = makerScreen.GetComponent<MakerLogic>();
 
-
         // subscribe events
         TimeManager.Instance.OnEndTime += CalculateCostsEndOfDay;
         
         TimeManager.Instance.FireNewDay += CalculateMoneyNewDay;
+
+        moneyPoolMakerUI.GetComponent<MoneyPool>().UpdateMoneyPoolText();
+        moneyPoolInvestorUI.GetComponent<MoneyPool>().UpdateMoneyPoolText();
 
         
     }
@@ -60,7 +66,8 @@ public class GameplayManager : MonoBehaviour
             }
         }
         
-        
+        moneyPoolMakerUI.GetComponent<MoneyPool>().UpdateMoneyPoolText();
+        moneyPoolInvestorUI.GetComponent<MoneyPool>().UpdateMoneyPoolText();
 
     }
 
