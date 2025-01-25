@@ -35,6 +35,13 @@ public class Lobby : NetworkBehaviour
     public TextMeshProUGUI clientRoleText;
     public Button startButton;
 
+    public GameObject gameWindow;
+    public TextMeshProUGUI playerText;
+
+    // public delegate void OnStartGame();
+    // public static OnStartGame onStartGame;
+
+
     public override void OnNetworkSpawn()
     {
         hostRole.OnValueChanged += (Role prev, Role newRole) =>
@@ -47,6 +54,7 @@ public class Lobby : NetworkBehaviour
             UpdateClientRoleText(newRole);
             SetStartState();
         };
+        //   onStartGame += () => StartGame();
 
     }
 
@@ -90,6 +98,7 @@ public class Lobby : NetworkBehaviour
 
     public void StartHost()
     {
+        transport.SetConnectionData(GetLocalIP(), 7777);
         NetworkManager.Singleton.StartHost();
         hostIPText.text = $"IP:{GetLocalIP()}";
         hostWaitingUI.SetActive(true);
@@ -105,8 +114,8 @@ public class Lobby : NetworkBehaviour
         Debug.Log(ip);
         if (ip != null && ip != "")
         {
-            transport.ConnectionData.Address = ip;
-            Debug.Log(ip);
+            // transport.ConnectionData.Address = ip;
+            //Debug.Log(ip);
             transport.SetConnectionData(ip, 7777);
         }
         NetworkManager.Singleton.StartClient();
@@ -116,6 +125,7 @@ public class Lobby : NetworkBehaviour
     {
         hostWaitingUI.SetActive(false);
         RoleSelectUI.SetActive(true);
+        SetStartState();
     }
 
     public void SelectInvestor()
@@ -141,9 +151,10 @@ public class Lobby : NetworkBehaviour
     public void SelectMaker()
     {
         bool isHost = NetworkManager.Singleton.IsHost;
+
+
         NetworkVariable<Role> myRoleVar = isHost ? hostRole : clientRole;
         NetworkVariable<Role> otherRoleVar = isHost ? clientRole : hostRole;
-
 
         if (myRoleVar.Value == Role.Maker)
         {
@@ -198,15 +209,46 @@ public class Lobby : NetworkBehaviour
             return;
         }
 
+        StartGameRPC();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void StartGameRPC()
+    {
         StartGame();
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         RoleSelectUI.SetActive(false);
+        gameWindow.SetActive(true);
+        Debug.Log("Starting Game");
+        bool isHost = NetworkManager.Singleton.IsHost;
+
+        string playernum = isHost ? "1" : "2";
+        string role = isHost ? hostRole.Value.ToString() : clientRole.Value.ToString();
+        playerText.text = $"You are in the game player {playernum}. Your role is {role}";
     }
 
-    public void ResetRoles()
+    public void OnClickEndGame()
+    {
+        EndGameRPC();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void EndGameRPC()
+    {
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        ResetRoles();
+        gameWindow.SetActive(false);
+        RoleSelectUI.SetActive(true);
+    }
+
+    private void ResetRoles()
     {
         SetRoleRPC(true, Role.None);
         SetRoleRPC(false, Role.None);
