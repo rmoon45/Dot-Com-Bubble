@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7333777328978223289
+--- !u!1 &1305953820274022537
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 288228831824855354}
-  - component: {fileID: 4403325595749049598}
-  - component: {fileID: 5906124533692212333}
+  - component: {fileID: 1671098878987860864}
+  - component: {fileID: 8439615723127450867}
+  - component: {fileID: 1264411079382576487}
+  - component: {fileID: 3877434255536868542}
   m_Layer: 5
-  m_Name: TimerText
+  m_Name: MoneyPoolText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &288228831824855354
+--- !u!224 &1671098878987860864
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7333777328978223289}
+  m_GameObject: {fileID: 1305953820274022537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3675803437498295125}
+  m_Father: {fileID: 5230045853579267226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 641.00006, y: -256.9}
-  m_SizeDelta: {x: 100.8689, y: 50}
+  m_AnchoredPosition: {x: -4.6660767, y: 0.19999695}
+  m_SizeDelta: {x: 190.668, y: 49.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4403325595749049598
+--- !u!222 &8439615723127450867
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7333777328978223289}
+  m_GameObject: {fileID: 1305953820274022537}
   m_CullTransparentMesh: 1
---- !u!114 &5906124533692212333
+--- !u!114 &1264411079382576487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7333777328978223289}
+  m_GameObject: {fileID: 1305953820274022537}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -65,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TIME
+  m_text: $0000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -136,7 +137,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8509370530202591607
+--- !u!114 &3877434255536868542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305953820274022537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8025fddf67e404ea20543c8cd68b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameplayManager: {fileID: 0}
+  moneyPoolText: {fileID: 1264411079382576487}
+--- !u!1 &6960269923018510826
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,51 +159,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3675803437498295125}
-  - component: {fileID: 17510444684628033}
-  - component: {fileID: 3530784705326658810}
+  - component: {fileID: 5230045853579267226}
+  - component: {fileID: 3681053463736400086}
+  - component: {fileID: 2852986542601808977}
   m_Layer: 5
-  m_Name: TimerPanel
+  m_Name: MoneyPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3675803437498295125
+--- !u!224 &5230045853579267226
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8509370530202591607}
+  m_GameObject: {fileID: 6960269923018510826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 288228831824855354}
+  - {fileID: 1671098878987860864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -246, y: 163.9}
-  m_SizeDelta: {x: -528.3989, y: -327.8}
+  m_AnchoredPosition: {x: 340.2, y: 163.90001}
+  m_SizeDelta: {x: -680.4, y: -328.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &17510444684628033
+--- !u!222 &3681053463736400086
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8509370530202591607}
+  m_GameObject: {fileID: 6960269923018510826}
   m_CullTransparentMesh: 1
---- !u!114 &3530784705326658810
+--- !u!114 &2852986542601808977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8509370530202591607}
+  m_GameObject: {fileID: 6960269923018510826}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
