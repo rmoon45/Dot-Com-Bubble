@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI timerTextInvestor;
     [SerializeField] float timerLength;
+
     
 
     public event EventHandler OnEndTime;
@@ -22,15 +23,17 @@ public class TimeManager : MonoBehaviour
     void Start() {
         timer = timerLength;
 
-        // new day aka just setting stuff up
-        FireNewDay?.Invoke(this, EventArgs.Empty);
-
     }
     
 
     // Update is called once per frame
     void Update()
     {
+        if (timer == timerLength) {
+            // fire for every new subsequent day
+            FireNewDay?.Invoke(this, EventArgs.Empty);
+        }
+
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
 
@@ -46,8 +49,7 @@ public class TimeManager : MonoBehaviour
             // fire off event ONCE YAYYYY
             OnEndTime?.Invoke(this, EventArgs.Empty);
 
-            // fire for every new subsequent day
-            FireNewDay?.Invoke(this, EventArgs.Empty);
+            
         }
 
         

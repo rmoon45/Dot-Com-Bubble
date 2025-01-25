@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// this would affect the UI stuff basically for this module
@@ -14,13 +15,23 @@ public class DisplayProfitOptionsModule : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI textProfitText;
 
-    void Start() {
-
+    void OnEnable() {
+        TimeManager timeManagerScript = timeManager.GetComponent<TimeManager>();
+        // timeManagerScript.FireNewDay += SetProfitsModule;
     }
 
-    void Update() {
+    public void SetProfitsModule() {
+        Debug.Log("Setting new day's profits within the UI visually");
 
+        ModuleOption gotImageModuleOption = gameplayerManager.GetComponent<GameplayManager>().GetModuleOption("image");
+        imageProfitText.text = "+$" + gotImageModuleOption.profit.ToString();
 
+        ModuleOption gotTextModuleOption = gameplayerManager.GetComponent<GameplayManager>().GetModuleOption("text");
+        textProfitText.text = "+$" + gotTextModuleOption.profit.ToString();
+    }
 
+    void OnDisable() {
+        // TimeManager timeManagerScript = timeManager.GetComponent<TimeManager>();
+        // timeManagerScript.FireNewDay -= SetProfitsModule;
     }
 }
