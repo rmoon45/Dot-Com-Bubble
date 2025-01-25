@@ -22,4 +22,9 @@ public class Cursor : MonoBehaviour
     {
         UnityEngine.Cursor.SetCursor(cursorPoint, Vector2.one * 10, CursorMode.Auto);
     }
+    
+    public void ChangeCursorText()
+    {
+        UnityEngine.Cursor.SetCursor(cursorText, Vector2.zero, CursorMode.Auto);
+    }
 }
