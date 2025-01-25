@@ -13,7 +13,9 @@ public class GameplayManager : MonoBehaviour
 
     [SerializeField] GameObject costModule;
 
-    [SerializeField] int moneyPool;
+    [SerializeField] GameObject moneyPoolUI;
+
+    [SerializeField] public int moneyPool;
 
     // array of module options
     [SerializeField] public ModuleOption[] moduleOptions;
@@ -57,6 +59,9 @@ public class GameplayManager : MonoBehaviour
                 moneyPool += mo.profit;
             }
         }
+        
+        
+
     }
 
     /// <summary>
