@@ -41,12 +41,11 @@ public class GameplayManager : MonoBehaviour
 
         MakerLogic makerLogic = makerScreen.GetComponent<MakerLogic>();
 
-        TimeManager timeManagerScript = timeManager.GetComponent<TimeManager>();
 
         // subscribe events
-        timeManagerScript.OnEndTime += CalculateCostsEndOfDay;
+        TimeManager.Instance.OnEndTime += CalculateCostsEndOfDay;
         
-        timeManagerScript.FireNewDay += CalculateMoneyNewDay;
+        TimeManager.Instance.FireNewDay += CalculateMoneyNewDay;
 
         
     }
@@ -81,9 +80,9 @@ public class GameplayManager : MonoBehaviour
     }
 
     void OnDisable() {
+        
         // unsubscribe stuff from events
-        TimeManager timeManagerScript = timeManager.GetComponent<TimeManager>();
-        timeManagerScript.OnEndTime -= CalculateCostsEndOfDay;
+        TimeManager.Instance.OnEndTime -= CalculateCostsEndOfDay;
 
     }
 }

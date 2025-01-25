@@ -7,6 +7,9 @@ using System;
 /// </summary>
 public class TimeManager : MonoBehaviour
 {
+    // static reference
+    public static TimeManager Instance { get; private set; }
+
     [SerializeField] TextMeshProUGUI timerTextMaker;
 
     [SerializeField] TextMeshProUGUI timerTextInvestor;
@@ -19,6 +22,15 @@ public class TimeManager : MonoBehaviour
     public event EventHandler FireNewDay;
 
     float timer;
+
+    // if there's another instance, and it's not me, delete myself
+    void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+        } else {
+            Instance = this;
+        }
+    }
 
     void Start() {
         timer = timerLength;

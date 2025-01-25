@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   investorScreen: {fileID: 1486370829}
   makerScreen: {fileID: 12205650}
-  timeManager: {fileID: 2093037085}
+  timeManager: {fileID: 4507728639813607174}
   displayProfitModule: {fileID: 462804499}
   costModule: {fileID: 177542981}
   moneyPool: 100
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayerManager: {fileID: 12032470}
-  timeManager: {fileID: 2093037085}
+  timeManager: {fileID: 4507728639813607174}
   imageProfitText: {fileID: 543540267}
   textProfitText: {fileID: 1430600314}
 --- !u!1 &471897938
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   makerScreen: {fileID: 12205650}
   investorScreen: {fileID: 1486370829}
-  timeManager: {fileID: 2093037085}
+  timeManager: {fileID: 4507728639813607174}
 --- !u!4 &1465101451
 Transform:
   m_ObjectHideFlags: 0
@@ -2564,53 +2564,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2093037085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2093037087}
-  - component: {fileID: 2093037086}
-  m_Layer: 0
-  m_Name: TimeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2093037086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093037085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a88dc12d136a841828f018d14c8c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerTextMaker: {fileID: 1055537012}
-  timerTextInvestor: {fileID: 1267813326}
-  timerLength: 5
---- !u!4 &2093037087
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093037085}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 393.6805, y: 253.0594, z: -0.42337453}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2122940400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3017,6 +2970,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4507728639813607174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5817668417686468041}
+  - component: {fileID: 5001050531837698039}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &5001050531837698039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507728639813607174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a88dc12d136a841828f018d14c8c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerTextMaker: {fileID: 1055537012}
+  timerTextInvestor: {fileID: 1267813326}
+  timerLength: 5
+--- !u!4 &5817668417686468041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507728639813607174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 393.6805, y: 253.0594, z: -0.42337453}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6190360108361366593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3141,6 +3141,6 @@ SceneRoots:
   - {fileID: 1486370833}
   - {fileID: 1465101451}
   - {fileID: 475471673}
-  - {fileID: 2093037087}
+  - {fileID: 5817668417686468041}
   - {fileID: 1936684524}
   - {fileID: 12032472}
