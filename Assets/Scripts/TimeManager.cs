@@ -15,10 +15,15 @@ public class TimeManager : MonoBehaviour
 
     public event EventHandler OnEndTime;
 
+    public event EventHandler FireNewDay;
+
     float timer;
 
     void Start() {
         timer = timerLength;
+
+        // new day aka just setting stuff up
+        FireNewDay?.Invoke(this, EventArgs.Empty);
 
     }
     
@@ -40,6 +45,9 @@ public class TimeManager : MonoBehaviour
             Debug.Log("Time has reached 0.");
             // fire off event ONCE YAYYYY
             OnEndTime?.Invoke(this, EventArgs.Empty);
+
+            // fire for every new subsequent day
+            FireNewDay?.Invoke(this, EventArgs.Empty);
         }
 
         
