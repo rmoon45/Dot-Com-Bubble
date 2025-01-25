@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: b757f50081f6ff34188ac38b2a959afe
+guid: 3a9a90c5df89b9245b372de67ca61c08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8927145896549395126
-    second: greenest pastures_0
+      213: 8894201953851282084
+    second: Buttons_0
+  - first:
+      213: 7664807735657788756
+    second: Buttons_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: greenest pastures_0
+      name: Buttons_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 4928
-        height: 3264
+        x: 79
+        y: 215
+        width: 326
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6baa9e515e793eb70800000000000000
-      internalID: 8927145896549395126
+      spriteID: 4a214e3bd8d8e6b70800000000000000
+      internalID: 8894201953851282084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 115
+        width: 81
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4557c83960ede5a60800000000000000
+      internalID: 7664807735657788756
       vertices: []
       indices: 
       edges: []
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      greenest pastures_0: 8927145896549395126
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

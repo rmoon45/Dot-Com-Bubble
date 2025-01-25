@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b757f50081f6ff34188ac38b2a959afe
+guid: 3ffbe9bdd3eb8974f9ee56e0bdfd488f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8927145896549395126
-    second: greenest pastures_0
+      213: 7482667652216324306
+    second: Square_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: greenest pastures_0
+      name: Square_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 4928
-        height: 3264
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6baa9e515e793eb70800000000000000
-      internalID: 8927145896549395126
+      spriteID: 2d009a6b596c7d760800000000000000
+      internalID: 7482667652216324306
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      greenest pastures_0: 8927145896549395126
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
