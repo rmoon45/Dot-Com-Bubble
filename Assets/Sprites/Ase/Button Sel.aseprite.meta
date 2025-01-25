@@ -152,7 +152,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Button
+    - name: Button Sel
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -179,4 +179,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 563, y: 172}
+  canvasSize: {x: 79, y: 81}

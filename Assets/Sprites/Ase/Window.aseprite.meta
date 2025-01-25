@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a312be66dace9474183e12a2838d1d86
+guid: 6dbe9d3654f64474ba7f54cd3e65ecf0
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,9 +122,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Button Reg
+  - name: Window
     originalName: 
-    pivot: {x: 0.49259868, y: 0.07804878}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -132,9 +132,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 608
-      height: 205
-    spriteID: 709a047799e10e94cbef1e7d6a434227
+      width: 1875
+      height: 753
+    spriteID: 41be5331489d3fa4fa36f25e3c11a026
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,21 +146,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -2025680508
-    name: Button Reg
+    guid: 954174806
+    name: Window
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Button Reg
+    - name: Window
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: -18
-        y: -16
-        width: 608
-        height: 205
-      spriteId: 709a047799e10e94cbef1e7d6a434227
+        x: 0
+        y: 0
+        width: 1875
+        height: 753
+      spriteId: 41be5331489d3fa4fa36f25e3c11a026
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -179,4 +179,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 79, y: 81}
+  canvasSize: {x: 1875, y: 753}
