@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class ButtonManager : MonoBehaviour
     public void InstantiateImageUnderMaker() {
         // should replace the module with this thing probably let's see!
         Instantiate(imageGameObject, new Vector3(module.transform.position.x, module.transform.position.y, 0), transform.rotation, makerScreen.transform);
-        module.SetActive(false);
+        
 
         foreach (ModuleOption mo in gameplayManagerScript.moduleOptions) {
             if (mo.name == "image") {
@@ -36,7 +37,7 @@ public class ButtonManager : MonoBehaviour
 
     public void InstntiateTextUnderMaker() {
        Instantiate(textGameObject, new Vector3(module.transform.position.x, module.transform.position.y, 0), transform.rotation, makerScreen.transform);
-       module.SetActive(false);
+
 
        foreach (ModuleOption mo in gameplayManagerScript.moduleOptions) {
             if (mo.name == "text") {

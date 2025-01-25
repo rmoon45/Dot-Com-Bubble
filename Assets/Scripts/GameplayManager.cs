@@ -64,7 +64,7 @@ public class GameplayManager : MonoBehaviour
     /// sorry this is also resets the isSelectedByMaker thing the in addition to the randominzing costs and profits
     /// </summary>
     void CalculateMoneyNewDay(object sender, EventArgs e) {
-        Debug.Log("Setting new day's profits and costs logically");
+        
         foreach (ModuleOption mo in moduleOptions) {
 
             mo.cost = UnityEngine.Random.Range(1, 10);

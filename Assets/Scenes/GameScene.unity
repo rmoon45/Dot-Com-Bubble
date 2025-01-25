@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f31849f4d7b5942bac3699a913a668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayManager: {fileID: 0}
+  gameplayManager: {fileID: 12032470}
   makerScreen: {fileID: 12205650}
   module: {fileID: 177542981}
   imageGameObject: {fileID: 842721203230862767, guid: 796e78ddbe619fb4cad75331ba8618a0, type: 3}
@@ -2715,7 +2715,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimerPanel
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8827692211871731458, guid: 540d381d6a91524439b98b93984e2faa, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3124,7 +3125,8 @@ PrefabInstance:
       propertyPath: timerLength
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8827692211871731458, guid: 540d381d6a91524439b98b93984e2faa, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

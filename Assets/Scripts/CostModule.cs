@@ -16,8 +16,12 @@ public class CostModule : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    /// <summary>
+    /// i'm sorry god for this. i need for the UI i swear to you
+    /// </summary>
     public void SetCostsModule() {
-        Debug.Log("Setting new day's profits within the UI visually");
+        
 
         ModuleOption gotImageModuleOption = gameplayerManager.GetComponent<GameplayManager>().GetModuleOption("image");
         imageCostText.text = "-$" + gotImageModuleOption.cost.ToString();

@@ -21,7 +21,7 @@ public class DisplayProfitOptionsModule : MonoBehaviour
     }
 
     public void SetProfitsModule() {
-        Debug.Log("Setting new day's profits within the UI visually");
+        
 
         ModuleOption gotImageModuleOption = gameplayerManager.GetComponent<GameplayManager>().GetModuleOption("image");
         imageProfitText.text = "+$" + gotImageModuleOption.profit.ToString();
