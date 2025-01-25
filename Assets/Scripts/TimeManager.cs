@@ -37,6 +37,7 @@ public class TimeManager : MonoBehaviour
 
         } else if (timer < 0) {
             timer = timerLength;
+            Debug.Log("Time has reached 0.");
             // fire off event ONCE YAYYYY
             OnEndTime?.Invoke(this, EventArgs.Empty);
         }
