@@ -3,19 +3,19 @@ using TMPro;
 
 public class MoneyPool : MonoBehaviour
 {
-    [SerializeField] GameObject gameplayManager;
+    // [SerializeField] GameObject gameplayManager;
 
-    [SerializeField] TextMeshProUGUI moneyPoolText;
+    // [SerializeField] TextMeshProUGUI moneyPoolText;
 
-    GameplayManager gameplayerManagerScript;
+    // GameplayManager gameplayerManagerScript;
 
-    void Start() {
-        gameplayerManagerScript = gameplayerManagerScript.GetComponent<GameplayManager>();
-    }
+    // void Start() {
+    //     gameplayerManagerScript = gameplayerManagerScript.GetComponent<GameplayManager>();
+    // }
     
-    void UpdateMoneyPoolText() {
+    // void UpdateMoneyPoolText() {
         
-        moneyPoolText.text = gameplayerManagerScript.moneyPool.ToString();
-    }
+    //     moneyPoolText.text = gameplayerManagerScript.moneyPool.ToString();
+    // }
     
 }
