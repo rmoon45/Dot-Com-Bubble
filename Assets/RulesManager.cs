@@ -10,6 +10,12 @@ public class RulesManager : NetworkBehaviour
     [SerializeField] private List<Rule> rules = new List<Rule>();
     private static System.Random rng = new System.Random();
 
+    public Rule GetRule(int ruleId)
+    {
+        return rules.Where(r => r.ruleId == ruleId).FirstOrDefault();
+    }
+
+
     public string SelectRandomRules(int day)
     {
         return getRandomRules(GetNumRules(day), GetMaxDifficulty(day));
@@ -31,7 +37,7 @@ public class RulesManager : NetworkBehaviour
         int numSelected = 0;
         Shuffle(rules);
         int i = 0;
-        while (numSelected <= numRules)
+        while (numSelected < numRules)
         {
             Rule r = rules[i];
             if (r.difficulty <= maxDifficulty)
@@ -43,10 +49,6 @@ public class RulesManager : NetworkBehaviour
                 }
                 selectedRules = selectedRules + currid;
                 numSelected++;
-            }
-            else
-            {
-                //  Debug.Log("rejected rule " + r.ruleId);
             }
             i++;
             if (i == rules.Count)
