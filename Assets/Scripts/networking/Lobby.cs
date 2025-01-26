@@ -261,9 +261,14 @@ public class Lobby : NetworkBehaviour
     public void CloseEndGameScreen()
     {
         ResetRoles();
+        CloseEndGameScreenRPC();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    public void CloseEndGameScreenRPC()
+    {
         endGameScreen.SetActive(false);
         RoleSelectUI.SetActive(true);
-
     }
 
     public void QuitGame()

@@ -10,22 +10,39 @@ using System;
 using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine.UI;
+using Unity.Collections;
 public class NetworkedGameManager : NetworkBehaviour
 {
     public Lobby lobby;
     public int startingMoney = 10_000;
+    public int numDays = 5;
+    public float dayLength = 10;
 
     public Role role;
 
+    public NetworkVariable<bool> inGame = new NetworkVariable<bool>(false);
     public NetworkVariable<int> money = new NetworkVariable<int>(0);
     private NetworkVariable<int> moneyGained = new NetworkVariable<int>(0);
     private NetworkVariable<int> moneyLost = new NetworkVariable<int>(0);
-    public NetworkVariable<int> currentDay = new NetworkVariable<int>(0);
+    public NetworkVariable<int> currentDay = new NetworkVariable<int>(1);
+    public NetworkVariable<float> dayTimer = new NetworkVariable<float>(0);
+    public NetworkVariable<bool> timerActive = new NetworkVariable<bool>(false);
+
+    private NetworkVariable<FixedString32Bytes> currSelectedRules = new NetworkVariable<FixedString32Bytes>();
 
 
     public TextMeshProUGUI moneyText;
     public GameObject makerCanvas;
     public GameObject investorCanvas;
+
+    [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] TextMeshProUGUI dayText;
+
+    public RulesManager rulesManager;
+
+    public event EventHandler OnEndDay;
+    // public event EventHandler FireNewDay;
+
 
     public override void OnNetworkSpawn()
     {
@@ -33,6 +50,8 @@ public class NetworkedGameManager : NetworkBehaviour
         {
             OnChangeMoney(newVal);
         };
+        currentDay.OnValueChanged += (_, newval) => { Debug.Log("day " + newval); };
+        currSelectedRules.OnValueChanged += (_, newval) => { Debug.Log("rules " + newval); };
     }
 
     public void StartGame(Role role)
@@ -40,18 +59,129 @@ public class NetworkedGameManager : NetworkBehaviour
         this.role = role;
         makerCanvas.SetActive(role == Role.Maker);
         investorCanvas.SetActive(role == Role.Investor);
-        money.Value = startingMoney;
-        moneyLost.Value = 0;
-        moneyGained.Value = 0;
+        if (IsHost)
+        {
+            money.Value = startingMoney;
+            moneyLost.Value = 0;
+            moneyGained.Value = 0;
+            inGame.Value = true;
+
+            StartNextDay(1);
+        }
     }
+
+    private void Update()
+    {
+        if (!IsHost || !inGame.Value) return;
+        TickTimer();
+    }
+
+    private void TickTimer()
+    {
+        if (!timerActive.Value) return;
+        // if (timer == timerLength)
+        // {
+        //     // fire for every new subsequent day
+        //     FireNewDay?.Invoke(this, EventArgs.Empty);
+        // }
+        if (dayTimer.Value > 0)
+        {
+            dayTimer.Value -= Time.deltaTime;
+            UpdateTimerTextRPC(dayTimer.Value);
+        }
+        else
+        {
+            StartCoroutine(EndDayCoroutine());
+        }
+    }
+
+
+    private IEnumerator EndDayCoroutine()
+    {
+        //disable interaction ?
+        Debug.Log("end of day");
+        timerActive.Value = false;
+        yield return new WaitForSeconds(1);
+
+        AddMoneyRPC(CalculateCosts() * -1);
+        yield return new WaitForSeconds(1);
+
+        AddMoneyRPC(CalculateProfit());
+        yield return new WaitForSeconds(1);
+
+        GoToNextDay();
+    }
+
+    private void GoToNextDay()
+    {
+        dayTimer.Value = dayLength;
+        int nextDay = currentDay.Value + 1;
+        OnEndDay?.Invoke(this, EventArgs.Empty);
+        if (nextDay > numDays)
+        {
+            EndGame(true);
+        }
+        else
+        {
+            StartNextDay(nextDay);
+        }
+    }
+
+    private void StartNextDay(int dayNum)
+    {
+        string rules = rulesManager.SelectRandomRules(dayNum);
+
+        Debug.Log("rules " + rules);
+
+        currSelectedRules.Value = new FixedString32Bytes(rules);
+
+        currentDay.Value = dayNum;
+        dayTimer.Value = dayLength;
+        timerActive.Value = true;
+
+        UpdateTimerTextRPC(dayLength);
+        ChangeDayTextRPC(dayNum);
+        Debug.Log("Starting next day");
+    }
+
+
+    private int CalculateCosts()
+    {
+        //use rules and modules
+        return 1000;
+    }
+
+    private int CalculateProfit()
+    {
+        //use rules and modules
+        return 1000;
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void UpdateTimerTextRPC(float time)
+    {
+        if (time < 0) time = 0;
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void ChangeDayTextRPC(int day)
+    {
+        dayText.text = $"Day {day}";
+    }
+
 
     public void OnChangeMoney(int moneyValue)
     {
         moneyText.text = $"Money: ${moneyValue}";
         if (moneyValue <= 0)
         {
+            StopAllCoroutines();
             Debug.Log("You lose!");
-            CoroutineUtils.ExecuteAfterEndOfFrame(() => { EndGame(); }, this);
+            CoroutineUtils.ExecuteAfterEndOfFrame(() => { EndGame(false); }, this);
         }
     }
 
@@ -76,8 +206,12 @@ public class NetworkedGameManager : NetworkBehaviour
     }
 
 
-    public void EndGame()
+    public void EndGame(bool win)
     {
+        if (IsHost)
+        {
+            inGame.Value = false;
+        }
         makerCanvas.SetActive(false);
         investorCanvas.SetActive(false);
         lobby.EndGameFromGameManager(currentDay.Value, money.Value, moneyGained.Value, moneyLost.Value);
