@@ -6,6 +6,8 @@ public enum ModuleType
     None,
     Text,
     Image,
+    Ad,
+    Chatbot,
 }
 
 

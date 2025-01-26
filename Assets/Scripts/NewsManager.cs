@@ -10,11 +10,6 @@ public class NewsManager : MonoBehaviour
     // create a list of gameobjects
     List<GameObject> newsStoryInstantiatedList;
 
-    void Start()
-    {
-        newsStoryInstantiatedList = new List<GameObject>();
-    }
-
     public void ClearNews()
     {
         if (newsStoryInstantiatedList == null) return;
@@ -33,7 +28,11 @@ public class NewsManager : MonoBehaviour
     {
         // clear out the prior newsStory stuff
 
+        if (newsStoryInstantiatedList == null)
+        {
+            newsStoryInstantiatedList = new List<GameObject>();
 
+        }
 
         // loop thru the array
         foreach (string newL in newsLines)

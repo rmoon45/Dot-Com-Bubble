@@ -43,6 +43,8 @@ public class NetworkedGameManager : NetworkBehaviour
     public RulesManager rulesManager;
     public MakerLogic makerLogic;
     public RuleEvaluator ruleEvaluator;
+    public BillingManager makerBillingManager;
+    public BillingManager investorBillingManager;
 
     public override void OnNetworkSpawn()
     {
@@ -184,15 +186,29 @@ public class NetworkedGameManager : NetworkBehaviour
             makerLogic.ClearNews();
             makerLogic.SetNewsForRules(decodeRules(rules.ToString()));
         }
+        UpdateBillingList(currSelectedModules.Value.ToString(), rules.ToString());
+
     }
 
     private void HandleModuleUpdates(FixedString128Bytes modules)
     {
+        UpdateBillingList(modules.ToString(), currSelectedRules.Value.ToString());
+    }
+
+    private void UpdateBillingList(string modules, string rules)
+    {
         var costProfit = RuleEvaluator.EvaluateCostsAndProfits(
             currentDay.Value,
-            modules.ToString(),
-            decodeRules(currSelectedRules.Value.ToString()));
-        Debug.Log(costProfit);
+            modules,
+            decodeRules(rules));
+        if (role == Role.Maker)
+        {
+            makerBillingManager.SetBillingList(costProfit.costs);
+        }
+        else
+        {
+            investorBillingManager.SetBillingList(costProfit.profits);
+        }
     }
 
     private int[] decodeRules(string rules)

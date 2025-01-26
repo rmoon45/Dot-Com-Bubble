@@ -76,7 +76,7 @@ public class RuleEvaluator
         switch (ruleNum)
         {
             case 1:
-                text = "the price of living";
+                text = "it takes 2";
                 cost = modules.Count(C => C == 't') == 2 ? 0 : 500;
                 break;
             case 2:
@@ -111,7 +111,7 @@ public class RuleEvaluator
                 break;
             case 2:
                 text = "text good";
-                profit = modules.Count(C => C == 't');
+                profit = modules.Count(C => C == 't') * 100;
                 break;
         }
 
