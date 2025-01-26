@@ -10,10 +10,20 @@ public class CostModule : MonoBehaviour
     public List<ModuleButton> buttons;
 
     public MakerLogic makerLogic;
+    public bool unlocked;
+    public GameObject lockedObj;
 
     public void Reset()
     {
         SetType(ModuleType.None);
+        unlocked = false;
+        lockedObj.SetActive(true);
+    }
+
+    public void Unlock()
+    {
+        unlocked = true;
+        lockedObj.SetActive(false);
     }
 
     public void SetType(ModuleType type)

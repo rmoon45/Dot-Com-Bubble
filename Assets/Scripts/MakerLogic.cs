@@ -12,9 +12,11 @@ public class MakerLogic : MonoBehaviour
     public GameObject disableBlocker;
     private bool interactionDisabled = false;
 
-    void Start()
+    public void ResetMaker()
     {
         resetModules();
+        UnlockModule(1);
+        UnlockModule(2);
     }
 
     public void resetModules()
@@ -30,6 +32,11 @@ public class MakerLogic : MonoBehaviour
         moduleTypes[moduleNum] = type;
         //Debug.Log(modulesToString());
         networkedGameManager.SetModulesRPC(new FixedString128Bytes(modulesToString()));
+    }
+
+    public void UnlockModule(int num)
+    {
+        costModules[num - 1].Unlock();
     }
 
 

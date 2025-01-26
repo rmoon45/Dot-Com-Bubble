@@ -32,6 +32,7 @@ public class NetworkedGameManager : NetworkBehaviour
     private NetworkVariable<FixedString128Bytes> currSelectedRules = new NetworkVariable<FixedString128Bytes>();
     private NetworkVariable<FixedString128Bytes> currSelectedModules = new NetworkVariable<FixedString128Bytes>();
 
+    public NetworkVariable<int> numModulesUnlocked = new NetworkVariable<int>(2);
 
     public TextMeshProUGUI moneyText;
     public GameObject makerCanvas;
@@ -42,6 +43,7 @@ public class NetworkedGameManager : NetworkBehaviour
 
     public RulesManager rulesManager;
     public MakerLogic makerLogic;
+    public InvestorLogic investorLogic;
     public RuleEvaluator ruleEvaluator;
     public BillingManager makerBillingManager;
     public BillingManager investorBillingManager;
@@ -55,7 +57,7 @@ public class NetworkedGameManager : NetworkBehaviour
         currentDay.OnValueChanged += (_, newval) => { Debug.Log("day " + newval); };
         currSelectedRules.OnValueChanged += (_, newval) => { HandleRuleUpdates(newval); };
         currSelectedModules.OnValueChanged += (_, newval) => { HandleModuleUpdates(newval); };
-
+        numModulesUnlocked.OnValueChanged += (_, newval) => { HandleNumModulesUnlocked(newval); };
     }
 
     public void StartGame(Role role)
@@ -72,6 +74,21 @@ public class NetworkedGameManager : NetworkBehaviour
 
             StartNextDay(1);
         }
+        if (role == Role.Investor)
+        {
+            investorLogic.ResetInvestor();
+        }
+        if (role == Role.Maker)
+        {
+            makerLogic.ResetMaker();
+        }
+    }
+
+
+    private void HandleNumModulesUnlocked(int num)
+    {
+        if (role == Role.Maker)
+            makerLogic.UnlockModule(num);
     }
 
     private void Update()
@@ -79,6 +96,13 @@ public class NetworkedGameManager : NetworkBehaviour
         if (!IsHost || !inGame.Value) return;
         TickTimer();
     }
+
+    [Rpc(SendTo.Server)]
+    public void setNumModulesRPC(int numModules)
+    {
+        numModulesUnlocked.Value = numModules;
+    }
+
 
     private void TickTimer()
     {
