@@ -13,7 +13,6 @@ public class NewsManager : MonoBehaviour
     void Start() {
         newsStoryInstantiatedList = new List<NewsStory>();
 
-        SetNews(new string[] {"cries", "I'M GOING TO LIVE MYSELF"});
     }
 
     /// <summary>
