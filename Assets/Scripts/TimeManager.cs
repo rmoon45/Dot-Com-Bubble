@@ -7,15 +7,30 @@ using System;
 /// </summary>
 public class TimeManager : MonoBehaviour
 {
+    // static reference
+    public static TimeManager Instance { get; private set; }
+
     [SerializeField] TextMeshProUGUI timerTextMaker;
 
     [SerializeField] TextMeshProUGUI timerTextInvestor;
     [SerializeField] float timerLength;
+
     
 
     public event EventHandler OnEndTime;
 
+    public event EventHandler FireNewDay;
+
     float timer;
+
+    // if there's another instance, and it's not me, delete myself
+    void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+        } else {
+            Instance = this;
+        }
+    }
 
     void Start() {
         timer = timerLength;
@@ -26,6 +41,11 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timer == timerLength) {
+            // fire for every new subsequent day
+            FireNewDay?.Invoke(this, EventArgs.Empty);
+        }
+
         int minutes = Mathf.FloorToInt(timer / 60);
         int seconds = Mathf.FloorToInt(timer % 60);
 
@@ -40,6 +60,8 @@ public class TimeManager : MonoBehaviour
             Debug.Log("Time has reached 0.");
             // fire off event ONCE YAYYYY
             OnEndTime?.Invoke(this, EventArgs.Empty);
+
+            
         }
 
         

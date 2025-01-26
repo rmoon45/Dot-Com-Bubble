@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9015945906928603429}
   - component: {fileID: 3187374790740634305}
   - component: {fileID: 2099730341268898790}
-  - component: {fileID: 3131258789080781703}
+  - component: {fileID: -4879235475203066523}
   m_Layer: 5
   m_Name: ImageSpawn
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3131258789080781703
+--- !u!114 &-4879235475203066523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 842721203230862767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1678680e5f760f458c17f4a2ea8d815, type: 3}
+  m_Script: {fileID: 11500000, guid: 08fe98f81f303cd458affcaef49eb06e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeManager: {fileID: 3418485598136157777, guid: f7580ad02c47e914bb0820bd36403a7f, type: 3}
