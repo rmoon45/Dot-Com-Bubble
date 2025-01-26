@@ -9,6 +9,8 @@ public class MakerLogic : MonoBehaviour
     public NewsManager newsManager;
     public RulesManager rulesManager;
     public NetworkedGameManager networkedGameManager;
+    public GameObject disableBlocker;
+    private bool interactionDisabled = false;
 
     void Start()
     {
@@ -68,5 +70,11 @@ public class MakerLogic : MonoBehaviour
     public void ClearNews()
     {
         newsManager.ClearNews();
+    }
+
+    public void SetInteractionDisabled(bool val)
+    {
+        interactionDisabled = val;
+        disableBlocker.SetActive(val);
     }
 }
