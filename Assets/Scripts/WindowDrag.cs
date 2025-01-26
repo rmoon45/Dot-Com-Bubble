@@ -34,9 +34,9 @@ public class WindowDrag : MonoBehaviour, IDragHandler
         float top = pos.y + halfSize.y;
         float bottom = pos.y + halfSize.y;
         
-        if (left < 0) rectTransform.anchoredPosition = new Vector2(halfSize.x, pos.y);
+        //if (left < 0) rectTransform.anchoredPosition = new Vector2(halfSize.x, pos.y);
         // print(right);
         //if (right > 0) rectTransform.anchoredPosition = new Vector2(canvas.pixelRect.width / 2 - halfSize.x, pos.y);
-        rectTransform.anchoredPosition = new Vector2(canvasSize.x / 2 - halfSize.x, pos.y);
+        //rectTransform.anchoredPosition = new Vector2(canvasSize.x / 2 - halfSize.x, pos.y);
     }
 }
