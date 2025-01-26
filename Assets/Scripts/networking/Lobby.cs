@@ -13,20 +13,13 @@ using UnityEngine.UI;
 
 public class Lobby : NetworkBehaviour
 {
+    public GameObject hostClientButtons;
     public TextMeshProUGUI hostIPText;
     public GameObject hostWaitingUI;
     public GameObject RoleSelectUI;
 
     private UnityTransport transport => (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
     private string ip;
-
-    [Serializable]
-    public enum Role
-    {
-        None,
-        Maker,
-        Investor
-    }
 
     public NetworkVariable<Role> hostRole = new NetworkVariable<Role>(Role.None);
     public NetworkVariable<Role> clientRole = new NetworkVariable<Role>(Role.None);
@@ -37,6 +30,13 @@ public class Lobby : NetworkBehaviour
 
     public GameObject gameWindow;
     public TextMeshProUGUI playerText;
+
+    public NetworkedGameManager networkedGameManager;
+
+    public GameObject endGameScreen;
+    public TextMeshProUGUI DaysSurvivedText;
+    public TextMeshProUGUI MoneyMadeText;
+    public TextMeshProUGUI MoneyLostText;
 
     // public delegate void OnStartGame();
     // public static OnStartGame onStartGame;
@@ -123,9 +123,10 @@ public class Lobby : NetworkBehaviour
 
     void ShowRoleWindow()
     {
+        hostClientButtons.SetActive(false);
+        SetStartState();
         hostWaitingUI.SetActive(false);
         RoleSelectUI.SetActive(true);
-        SetStartState();
     }
 
     public void SelectInvestor()
@@ -226,32 +227,43 @@ public class Lobby : NetworkBehaviour
         bool isHost = NetworkManager.Singleton.IsHost;
 
         string playernum = isHost ? "1" : "2";
-        string role = isHost ? hostRole.Value.ToString() : clientRole.Value.ToString();
-        playerText.text = $"You are in the game player {playernum}. Your role is {role}";
+        Role role = isHost ? hostRole.Value : clientRole.Value;
+        playerText.text = $"You are in the game player {playernum}. Your role is {role.ToString()}";
+        networkedGameManager.StartGame(role);
     }
 
-    public void OnClickEndGame()
+    public void EndGameFromGameManager(int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
     {
-        EndGameRPC();
+        EndGameRPC(daysSurvived, moneyTotal, moneyMade, moneyLost);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void EndGameRPC()
+    private void EndGameRPC(int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
     {
-        EndGame();
+        EndGame(daysSurvived, moneyTotal, moneyMade, moneyLost);
     }
 
-    private void EndGame()
+    private void EndGame(int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
     {
-        ResetRoles();
+        DaysSurvivedText.text = $"Days Survived: {daysSurvived}";
+        MoneyMadeText.text = $"Money Made: ${moneyMade}";
+        MoneyLostText.text = $"Money Lost: ${moneyLost}";
         gameWindow.SetActive(false);
-        RoleSelectUI.SetActive(true);
+        endGameScreen.SetActive(true);
     }
 
     private void ResetRoles()
     {
         SetRoleRPC(true, Role.None);
         SetRoleRPC(false, Role.None);
+    }
+
+    public void CloseEndGameScreen()
+    {
+        ResetRoles();
+        endGameScreen.SetActive(false);
+        RoleSelectUI.SetActive(true);
+
     }
 
     public void QuitGame()
