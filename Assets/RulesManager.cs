@@ -40,15 +40,17 @@ public class RulesManager : NetworkBehaviour
         while (numSelected < numRules)
         {
             Rule r = rules[i];
-            if (r.difficulty <= maxDifficulty)
             {
-                var currid = r.ruleId.ToString();
-                if (currid.Length == 1)
+                if (r.difficulty <= maxDifficulty)
                 {
-                    currid = "0" + currid;
+                    var currid = r.ruleId.ToString();
+                    if (currid.Length == 1)
+                    {
+                        currid = "0" + currid;
+                    }
+                    selectedRules = selectedRules + currid;
+                    numSelected++;
                 }
-                selectedRules = selectedRules + currid;
-                numSelected++;
             }
             i++;
             if (i == rules.Count)

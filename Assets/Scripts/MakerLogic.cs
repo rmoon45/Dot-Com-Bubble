@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class MakerLogic : MonoBehaviour
@@ -7,6 +8,7 @@ public class MakerLogic : MonoBehaviour
     public List<CostModule> costModules = new List<CostModule>();
     public NewsManager newsManager;
     public RulesManager rulesManager;
+    public NetworkedGameManager networkedGameManager;
 
     void Start()
     {
@@ -24,7 +26,8 @@ public class MakerLogic : MonoBehaviour
     public void SetModule(int moduleNum, ModuleType type)
     {
         moduleTypes[moduleNum] = type;
-        Debug.Log(modulesToString());
+        //Debug.Log(modulesToString());
+        networkedGameManager.SetModulesRPC(new FixedString128Bytes(modulesToString()));
     }
 
 

@@ -2703,6 +2703,7 @@ MonoBehaviour:
   - {fileID: 1607320986}
   newsManager: {fileID: 1600295669}
   rulesManager: {fileID: 15970143}
+  networkedGameManager: {fileID: 1580479601}
 --- !u!1 &1052472759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,7 +3555,7 @@ MonoBehaviour:
   lobby: {fileID: 1065048172}
   startingMoney: 10000
   numDays: 5
-  dayLength: 3
+  dayLength: 1000
   role: 0
   inGame:
     m_InternalValue: 0

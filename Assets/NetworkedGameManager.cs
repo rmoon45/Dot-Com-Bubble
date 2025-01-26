@@ -11,6 +11,7 @@ using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine.UI;
 using Unity.Collections;
+using System.Data;
 public class NetworkedGameManager : NetworkBehaviour
 {
     public Lobby lobby;
@@ -29,6 +30,7 @@ public class NetworkedGameManager : NetworkBehaviour
     public NetworkVariable<bool> timerActive = new NetworkVariable<bool>(false);
 
     private NetworkVariable<FixedString128Bytes> currSelectedRules = new NetworkVariable<FixedString128Bytes>();
+    private NetworkVariable<FixedString128Bytes> currSelectedModules = new NetworkVariable<FixedString128Bytes>();
 
 
     public TextMeshProUGUI moneyText;
@@ -40,6 +42,7 @@ public class NetworkedGameManager : NetworkBehaviour
 
     public RulesManager rulesManager;
     public MakerLogic makerLogic;
+    public RuleEvaluator ruleEvaluator;
 
     public event EventHandler OnEndDay;
     // public event EventHandler FireNewDay;
@@ -53,6 +56,8 @@ public class NetworkedGameManager : NetworkBehaviour
         };
         currentDay.OnValueChanged += (_, newval) => { Debug.Log("day " + newval); };
         currSelectedRules.OnValueChanged += (_, newval) => { HandleRuleUpdates(newval); };
+        currSelectedModules.OnValueChanged += (_, newval) => { HandleModuleUpdates(newval); };
+
     }
 
     public void StartGame(Role role)
@@ -165,6 +170,15 @@ public class NetworkedGameManager : NetworkBehaviour
         }
     }
 
+    private void HandleModuleUpdates(FixedString128Bytes modules)
+    {
+        var costProfit = RuleEvaluator.EvaluateCostsAndProfits(
+            currentDay.Value,
+            modules.ToString(),
+            decodeRules(currSelectedRules.Value.ToString()));
+        Debug.Log(costProfit);
+    }
+
     private int[] decodeRules(string rules)
     {
         int length = Mathf.FloorToInt(rules.Length / 2.0f);
@@ -223,6 +237,12 @@ public class NetworkedGameManager : NetworkBehaviour
     {
         int change = role == Role.Maker ? -1000 : 1000;
         AddMoneyRPC(change);
+    }
+
+    [Rpc(SendTo.Server)]
+    public void SetModulesRPC(FixedString128Bytes modules)
+    {
+        currSelectedModules.Value = modules;
     }
 
     [Rpc(SendTo.Server)]

@@ -17,6 +17,7 @@ public class NewsManager : MonoBehaviour
 
     public void ClearNews()
     {
+        if (newsStoryInstantiatedList == null) return;
         foreach (GameObject ns in newsStoryInstantiatedList)
         {
             Destroy(ns);
