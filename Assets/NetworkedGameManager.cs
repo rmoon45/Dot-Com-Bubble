@@ -119,7 +119,7 @@ public class NetworkedGameManager : NetworkBehaviour
         OnEndDay?.Invoke(this, EventArgs.Empty);
         if (nextDay > numDays)
         {
-            EndGame(true);
+            EndGameRPC(true);
         }
         else
         {
@@ -176,12 +176,12 @@ public class NetworkedGameManager : NetworkBehaviour
 
     public void OnChangeMoney(int moneyValue)
     {
-        moneyText.text = $"Money: ${moneyValue}";
+        moneyText.text = $"${moneyValue}";
         if (moneyValue <= 0)
         {
             StopAllCoroutines();
             Debug.Log("You lose!");
-            CoroutineUtils.ExecuteAfterEndOfFrame(() => { EndGame(false); }, this);
+            CoroutineUtils.ExecuteAfterEndOfFrame(() => { EndGameRPC(false); }, this);
         }
     }
 
@@ -205,16 +205,16 @@ public class NetworkedGameManager : NetworkBehaviour
         money.Value += amount;
     }
 
-
-    public void EndGame(bool win)
+    [Rpc(SendTo.ClientsAndHost)]
+    public void EndGameRPC(bool win)
     {
         if (IsHost)
         {
             inGame.Value = false;
+            lobby.EndGameFromGameManager(win, currentDay.Value, money.Value, moneyGained.Value, moneyLost.Value);
         }
         makerCanvas.SetActive(false);
         investorCanvas.SetActive(false);
-        lobby.EndGameFromGameManager(currentDay.Value, money.Value, moneyGained.Value, moneyLost.Value);
     }
 
 }

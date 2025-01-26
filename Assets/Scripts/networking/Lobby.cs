@@ -38,6 +38,10 @@ public class Lobby : NetworkBehaviour
     public TextMeshProUGUI MoneyMadeText;
     public TextMeshProUGUI MoneyLostText;
 
+    public GameObject winText;
+    public GameObject loseText;
+
+
     // public delegate void OnStartGame();
     // public static OnStartGame onStartGame;
 
@@ -232,19 +236,21 @@ public class Lobby : NetworkBehaviour
         networkedGameManager.StartGame(role);
     }
 
-    public void EndGameFromGameManager(int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
+    public void EndGameFromGameManager(bool win, int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
     {
-        EndGameRPC(daysSurvived, moneyTotal, moneyMade, moneyLost);
+        EndGameRPC(win, daysSurvived, moneyTotal, moneyMade, moneyLost);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void EndGameRPC(int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
+    private void EndGameRPC(bool win, int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
     {
-        EndGame(daysSurvived, moneyTotal, moneyMade, moneyLost);
+        EndGame(win, daysSurvived, moneyTotal, moneyMade, moneyLost);
     }
 
-    private void EndGame(int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
+    private void EndGame(bool win, int daysSurvived, int moneyTotal, int moneyMade, int moneyLost)
     {
+        winText.SetActive(win);
+        loseText.SetActive(!win);
         DaysSurvivedText.text = $"Days Survived: {daysSurvived}";
         MoneyMadeText.text = $"Money Made: ${moneyMade}";
         MoneyLostText.text = $"Money Lost: ${moneyLost}";
