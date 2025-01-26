@@ -124,7 +124,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Document
     originalName: 
-    pivot: {x: 0.632948, y: -0.04288939}
+    pivot: {x: 0.50289017, y: -0.06546275}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -156,8 +156,8 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 31
-        y: 19
+        x: 76
+        y: 29
         width: 346
         height: 443
       spriteId: 2ae94122441f3ac4c8a75194fb8cecb5
