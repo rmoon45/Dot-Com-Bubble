@@ -9,6 +9,8 @@ public class MakerLogic : MonoBehaviour
     public NewsManager newsManager;
     public RulesManager rulesManager;
     public NetworkedGameManager networkedGameManager;
+    public GameObject disableBlocker;
+    private bool interactionDisabled = false;
 
     void Start()
     {
@@ -46,6 +48,9 @@ public class MakerLogic : MonoBehaviour
         if (type == ModuleType.None) return "n";
         if (type == ModuleType.Text) return "t";
         if (type == ModuleType.Image) return "i";
+        if (type == ModuleType.Ad) return "a";
+        if (type == ModuleType.Chatbot) return "c";
+
         return "0";
     }
 
@@ -68,5 +73,11 @@ public class MakerLogic : MonoBehaviour
     public void ClearNews()
     {
         newsManager.ClearNews();
+    }
+
+    public void SetInteractionDisabled(bool val)
+    {
+        interactionDisabled = val;
+        disableBlocker.SetActive(val);
     }
 }

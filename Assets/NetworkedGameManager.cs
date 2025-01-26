@@ -43,10 +43,8 @@ public class NetworkedGameManager : NetworkBehaviour
     public RulesManager rulesManager;
     public MakerLogic makerLogic;
     public RuleEvaluator ruleEvaluator;
-
-    public event EventHandler OnEndDay;
-    // public event EventHandler FireNewDay;
-
+    public BillingManager makerBillingManager;
+    public BillingManager investorBillingManager;
 
     public override void OnNetworkSpawn()
     {
@@ -104,16 +102,30 @@ public class NetworkedGameManager : NetworkBehaviour
 
     private IEnumerator EndDayCoroutine()
     {
-        //disable interaction ?
         Debug.Log("end of day");
         timerActive.Value = false;
         CleanupDayRPC();
         yield return new WaitForSeconds(1);
 
-        AddMoneyRPC(CalculateCosts() * -1);
+        var costProfit = RuleEvaluator.EvaluateCostsAndProfits(
+            currentDay.Value,
+            currSelectedModules.Value.ToString(),
+            decodeRules(currSelectedRules.Value.ToString()));
+
+        int totalCost = costProfit.costs.Sum(cost => cost.cost);
+        int totalProfit = costProfit.profits.Sum(proft => proft.cost);
+
+        AddMoneyRPC(totalCost * -1);
         yield return new WaitForSeconds(1);
 
-        AddMoneyRPC(CalculateProfit());
+        if (money.Value <= 0)
+        {
+            StopAllCoroutines();
+            Debug.Log("You lose!");
+            CoroutineUtils.ExecuteAfterEndOfFrame(() => { EndGameRPC(false); }, this);
+        }
+
+        AddMoneyRPC(totalProfit);
         yield return new WaitForSeconds(1);
 
         GoToNextDay();
@@ -123,10 +135,6 @@ public class NetworkedGameManager : NetworkBehaviour
     {
         dayTimer.Value = dayLength;
         int nextDay = currentDay.Value + 1;
-        OnEndDay?.Invoke(this, EventArgs.Empty);
-        if (role == Role.Maker)
-        {
-        }
         if (nextDay > numDays)
         {
             EndGameRPC(true);
@@ -142,7 +150,7 @@ public class NetworkedGameManager : NetworkBehaviour
     {
         if (role == Role.Maker)
         {
-            makerLogic.ClearNews();
+            makerLogic.SetInteractionDisabled(true);
         }
     }
 
@@ -159,6 +167,16 @@ public class NetworkedGameManager : NetworkBehaviour
         UpdateTimerTextRPC(dayLength);
         ChangeDayTextRPC(dayNum);
         Debug.Log("Starting next day");
+        StartNextDayRPC();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void StartNextDayRPC()
+    {
+        if (role == Role.Maker)
+        {
+            makerLogic.SetInteractionDisabled(false);
+        }
     }
 
     private void HandleRuleUpdates(FixedString128Bytes rules)
@@ -168,15 +186,29 @@ public class NetworkedGameManager : NetworkBehaviour
             makerLogic.ClearNews();
             makerLogic.SetNewsForRules(decodeRules(rules.ToString()));
         }
+        UpdateBillingList(currSelectedModules.Value.ToString(), rules.ToString());
+
     }
 
     private void HandleModuleUpdates(FixedString128Bytes modules)
     {
+        UpdateBillingList(modules.ToString(), currSelectedRules.Value.ToString());
+    }
+
+    private void UpdateBillingList(string modules, string rules)
+    {
         var costProfit = RuleEvaluator.EvaluateCostsAndProfits(
             currentDay.Value,
-            modules.ToString(),
-            decodeRules(currSelectedRules.Value.ToString()));
-        Debug.Log(costProfit);
+            modules,
+            decodeRules(rules));
+        if (role == Role.Maker)
+        {
+            makerBillingManager.SetBillingList(costProfit.costs);
+        }
+        else
+        {
+            investorBillingManager.SetBillingList(costProfit.profits);
+        }
     }
 
     private int[] decodeRules(string rules)
@@ -190,19 +222,6 @@ public class NetworkedGameManager : NetworkBehaviour
         }
         Debug.Log(r);
         return r;
-    }
-
-
-    private int CalculateCosts()
-    {
-        //use rules and modules
-        return 1000;
-    }
-
-    private int CalculateProfit()
-    {
-        //use rules and modules
-        return 1000;
     }
 
     [Rpc(SendTo.ClientsAndHost)]
@@ -225,12 +244,6 @@ public class NetworkedGameManager : NetworkBehaviour
     public void OnChangeMoney(int moneyValue)
     {
         moneyText.text = $"${moneyValue}";
-        if (moneyValue <= 0)
-        {
-            StopAllCoroutines();
-            Debug.Log("You lose!");
-            CoroutineUtils.ExecuteAfterEndOfFrame(() => { EndGameRPC(false); }, this);
-        }
     }
 
     public void onClickMoneyButton()

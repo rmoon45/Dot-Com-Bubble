@@ -9,23 +9,29 @@ public class BillingManager : MonoBehaviour
 
     List<GameObject> instantiatedBillingRows;
 
-    void Start() {
-        instantiatedBillingRows = new List<GameObject>();
 
-    }
-    
     /// <summary>
     /// Set the billing list
     /// </summary>
-    void SetBillingList(List<LineItem> lineItems) {
+    public void SetBillingList(List<LineItem> lineItems)
+    {
         // clear out the list and destroy
-        foreach (GameObject bw in instantiatedBillingRows) {
-            Destroy(bw);
+        if (instantiatedBillingRows != null)
+        {
+            foreach (GameObject bw in instantiatedBillingRows)
+            {
+                Destroy(bw);
+            }
+            instantiatedBillingRows.Clear();
         }
-        instantiatedBillingRows.Clear();
+        else
+        {
+            instantiatedBillingRows = new List<GameObject>();
+        }
 
         // loop thru
-        foreach (LineItem li in lineItems) {
+        foreach (LineItem li in lineItems)
+        {
             GameObject newBillingRow = Instantiate(billingRow, billingPanel.transform);
 
             instantiatedBillingRows.Add(newBillingRow);
