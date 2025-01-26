@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "a bunch of filler text like a lot of filler text like. \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b83eb36152fa82646927f9a8154f7c86, type: 2}
+  m_sharedMaterial: {fileID: -7445778044066149113, guid: b83eb36152fa82646927f9a8154f7c86, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 1
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7934732180054170216}
   - component: {fileID: 784016256878947118}
   - component: {fileID: 4133409689002828143}
-  - component: {fileID: -6859583756310149176}
+  - component: {fileID: 4765301172733784377}
   m_Layer: 5
   m_Name: TextSpawn
   m_TagString: Untagged
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-6859583756310149176
+--- !u!114 &4765301172733784377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,7 +222,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9095269851568641215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fe98f81f303cd458affcaef49eb06e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d1621ed95544b3394e33ab91cb9681e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManager: {fileID: 3418485598136157777, guid: f7580ad02c47e914bb0820bd36403a7f, type: 3}
+  texts:
+  - Jan 1. 1998 - hello! :) my name is des, and this right here is my very own corner
+    of the internet dedicated to the things that i love. i mostly use it as a digital
+    journal, of both my personal life and interests.
+  t: {fileID: 6160572911924442498}
