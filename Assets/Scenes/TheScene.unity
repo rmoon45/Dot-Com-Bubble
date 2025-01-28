@@ -397,11 +397,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   rules:
-  - {fileID: 11400000, guid: 96227ac089991fd46b22b9f02485dbbd, type: 2}
   - {fileID: 11400000, guid: 2b301fd61c8731c43936c3b785573e50, type: 2}
-  - {fileID: 11400000, guid: 70d42317b43ec2d4f9379d4cbdb9dbce, type: 2}
-  - {fileID: 11400000, guid: 6859ae61e56a0e94bb8cf89a62656854, type: 2}
-  - {fileID: 11400000, guid: 533fa0566618f75479401cd90e220bd3, type: 2}
+  - {fileID: 11400000, guid: f2d59cca9f5d97e48bed697efd6b7418, type: 2}
+  - {fileID: 11400000, guid: a47c94c25e735d449bf8734b95a451d8, type: 2}
+  - {fileID: 11400000, guid: 427eccf9d3f7065449ded26d54f56a1d, type: 2}
+  - {fileID: 11400000, guid: 51535abc7ae27424dab2dfcbd542ecc6, type: 2}
+  - {fileID: 11400000, guid: 68c07893279102641be87709f477700b, type: 2}
+  - {fileID: 11400000, guid: 5b525c71b5925b341a0b622ad51fa07e, type: 2}
+  - {fileID: 11400000, guid: b6ac57212a695604eb7cb120e851fb4a, type: 2}
+  - {fileID: 11400000, guid: 272b9b6869c0a234a979caf0ddaca341, type: 2}
+  - {fileID: 11400000, guid: f8c1ac98188723242bef80cf9e3ec85d, type: 2}
 --- !u!4 &15970144
 Transform:
   m_ObjectHideFlags: 0
@@ -2062,7 +2067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894002841022183638, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.573779
+      value: 0.64957964
       objectReference: {fileID: 0}
     - target: {fileID: 4194655247648785006, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
       propertyPath: m_Pivot.x
@@ -2146,22 +2151,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6322035592859642058, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
       propertyPath: m_text
-      value: 'RAIN
-
-        if raining men, pictures are profitable. Also you must
-        have EXACTLY 2 texts
-
-
-        Invasions
-
-        If Glorp invasion, we must
-        hide from the glorps. If you see them, they kill you. But we must read. We
-        must know.
-
-
-        UNKOWN
-
-        good luck'
+      value: "\u2014KEEP CALM AND DON\u2019T PANIC\u2014\r\nGet your butt in your
+        seat and tell your dev how to run his site. He\u2019s completely clueless
+        and only reads the headlines in the news. Unfortunately, the news app on
+        your machine is broken, which makes him your only source of any news whatsoever.
+        Tell him to read you the news and react accordingly.\r\n\r\n\u2014INSTRUCTIONS\u2014\r\nDuring
+        abductions follow standard procedure share all glorp images share all glorp
+        text praise glorp.\r\n\r\nDinosaurs seem to be in. George Lucas mentioned
+        he\u2019d be making more movies about them, so if he ever does make sure
+        to put some pictures up.\r\n\r\nAdvertising god loves advertising and hates
+        text. However, on the 7th day, he rests and doesn\u2019t care about text.\r\n\r\n[WARNING]
+        from the desk of the President of the United States of America: do not share
+        ANY IMAGES of glorps during ANY abductions.\r\n\r\nThe \u201CHalf life\u201D
+        USDA containment site continues to go underfunded. With multiple close calls
+        over the last few years, it\u2019s only a matter of time before the glorps
+        contained within are released. They are probably going to abduct a few people
+        so be careful. Please cover it up with ads.\r\n\r\nUse as many ads as you
+        can during tapeworms because the glorps said so. But don\u2019t let the infected
+        talk to each other or else the glorps and worms will spread.\r\n\r\nDinosaurs
+        love using websites and adore uniqueness. Use at least 4 unique modules or
+        else the dinosaurs will complain and tank your site\u2019s visits.\r\n\r\nPeople
+        seem to love talking about the Y2k bug, even to a computer. As it gets closer
+        to 2000 more people will probably talk about it, so react accordingly.\r\n\r\nThis
+        internet thing can never fail. If the news mentions it, invest in as many
+        unique modules as you can.\r\n\r\nSteven Spielberg? More like Evil Eelberg.
+        This horrible director constantly takes up space in the collective mind of
+        pop culture. People love to see him first and NOT SECOND. So put his picture
+        up first.\r\n\r\nI hate the sun. Sometimes it likes to reach down and try
+        to show us who\u2019s boss by destroying our electronics. Please retaliate
+        by using as many electronics as possible.\r\n\r\nThe ILOVEYOU bug continues
+        to infect 1000s of computers daily. If you have it, please purge your system
+        and clear all websites of any text, images, ads, or chatbots until the next
+        day, otherwise ILOVEYOU ILOVEYOU ILOVEYOU PLEASERESPONDRESEND ILOVEYOU ILOVEYOU\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322035592859642058, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
+      propertyPath: m_margin.w
+      value: -1823.0425
       objectReference: {fileID: 0}
     - target: {fileID: 6322035592859642058, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
       propertyPath: m_margin.x
@@ -2205,7 +2230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8319313937872907596, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2112.12
+      value: 2569
       objectReference: {fileID: 0}
     - target: {fileID: 8319313937872907596, guid: 012824a4e9e56884e9b418849d737f1d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4414,8 +4439,8 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   lobby: {fileID: 1065048172}
   startingMoney: 10000
-  numDays: 5
-  dayLength: 20
+  numDays: 10
+  dayLength: 30
   role: 0
   inGame:
     m_InternalValue: 0

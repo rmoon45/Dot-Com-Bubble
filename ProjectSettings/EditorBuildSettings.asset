@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TheScene.unity
     guid: 6d4449156ae87d249a16526ecf48a51a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Alex.unity
     guid: 5b85ebd97ed32a64cb0483c5911cc047
   m_configObjects:

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 958fe40160fdfaa48b36653fc9fe9ab9, type: 3}
-  m_Name: Test Rule 3
+  m_Name: 9 solar
   m_EditorClassIdentifier: 
-  ruleId: 3
-  ruleName: Test Rule 3
-  ruleNewsDescription: MY EYES
-  ruleManualDescription: There must be 1 text for every image
-  difficulty: 2
+  ruleId: 9
+  ruleName: Test Rule 2
+  ruleNewsDescription: Solar Flares to destroy Earth
+  ruleManualDescription: 'INVASIONS: If the invaders are glorps, add 2 images to
+    attract them'
+  difficulty: 1

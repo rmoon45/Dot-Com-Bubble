@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 958fe40160fdfaa48b36653fc9fe9ab9, type: 3}
-  m_Name: Test Rule 2
+  m_Name: 7 tapeworm
   m_EditorClassIdentifier: 
-  ruleId: 2
+  ruleId: 7
   ruleName: Test Rule 2
-  ruleNewsDescription: Glorp Invasion
+  ruleNewsDescription: Top 10 Tapeworms!
   ruleManualDescription: 'INVASIONS: If the invaders are glorps, add 2 images to
     attract them'
   difficulty: 1

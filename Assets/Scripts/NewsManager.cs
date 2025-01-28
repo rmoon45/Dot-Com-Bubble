@@ -10,6 +10,7 @@ public class NewsManager : MonoBehaviour
     // create a list of gameobjects
     List<GameObject> newsStoryInstantiatedList;
 
+
     public void ClearNews()
     {
         if (newsStoryInstantiatedList == null) return;

@@ -58,7 +58,7 @@ public class RuleEvaluator
         costs.Add(new LineItem("Daily Operations", GetFixedDayCost(day)));
         for (int i = 0; i < rules.Length; i++)
         {
-            costs.Add(GetRuleCost(modules, rules[i]));
+            costs.Add(GetRuleCost(modules, rules[i], day));
         }
         return costs;
     }
@@ -68,21 +68,69 @@ public class RuleEvaluator
         return 250 + day * 250;
     }
 
-    private static LineItem GetRuleCost(string modules, int ruleNum)
+    private static LineItem GetRuleCost(string modules, int ruleNum, int day)
     {
-        string text = "Unkown item";
+        string text = "Unknown item";
         int cost = 1000;
+
+        int numNothing = modules.Count(C => C == 'n');
+        int numtext = modules.Count(C => C == 't');
+        int numimages = modules.Count(C => C == 'i');
+        int numads = modules.Count(C => C == 'a');
+        int numchatbot = modules.Count(C => C == 'c');
 
         switch (ruleNum)
         {
             case 1:
-                text = "it takes 2";
-                cost = modules.Count(C => C == 't') == 2 ? 0 : 500;
+                text = "Glorp Pictures";
+                cost = numimages * 250;
                 break;
+
             case 2:
-                text = "pics bad";
-                cost = modules.Count(C => C == 'i') * 250;
+                text = "Yapping";
+                cost = day == 7 ? 0 : (numads + numtext) > 0 ? 750 : 0;
                 break;
+
+            case 3:
+                text = "Three of a Kind";
+                cost = numNothing == 3 || numtext == 3 || numimages == 3 || numads == 3 || numchatbot == 3 ? 200 : 0;
+                break;
+
+            case 4:
+                text = "Poor Coverage";
+                cost = numimages == 0 || numtext == 0 ? 750 : 0;
+                break;
+
+            case 5:
+                text = "Buggy";
+                cost = day < 5 ? numchatbot == 0 ? 1000 : 0 : numchatbot < 3 ? 1000 : 0;
+                break;
+
+            case 6:
+                text = "Loves me not";
+                cost = numNothing == 6 ? 0 : 200;
+                break;
+
+            case 7:
+                text = "Stop yapping";
+                cost = numchatbot * 100;
+                break;
+
+            case 8:
+                text = "Mr. Director";
+                cost = modules.ToCharArray()[3] == 'i' ? 200 : 0;
+                break;
+
+            case 9:
+                text = "Deadly Laser";
+                cost = numNothing * 500;
+                break;
+
+            case 10:
+                text = "Look Away";
+                cost = numimages * 500;
+                break;
+
         }
 
         return new LineItem(text, cost);
@@ -93,29 +141,78 @@ public class RuleEvaluator
         List<LineItem> profits = new List<LineItem>();
         for (int i = 0; i < rules.Length; i++)
         {
-            profits.Add(GetRuleProfit(modules, rules[i]));
+            profits.Add(GetRuleProfit(modules, rules[i], day));
         }
         return profits;
     }
 
-    private static LineItem GetRuleProfit(string modules, int ruleNum)
+    private static LineItem GetRuleProfit(string modules, int ruleNum, int day)
     {
-        string text = "Unkown item";
-        int profit = 1000;
+        string text = "Unknown item";
+        int cost = 1000;
+
+        int numNothing = modules.Count(C => C == 'n');
+        int numtext = modules.Count(C => C == 't');
+        int numimages = modules.Count(C => C == 'i');
+        int numads = modules.Count(C => C == 'a');
+        int numchatbot = modules.Count(C => C == 'c');
 
         switch (ruleNum)
         {
             case 1:
-                text = "Take a picture";
-                profit = modules.Count(C => C == 'i') * 250;
+                text = "Glorp Text";
+                cost = numtext * 100;
                 break;
+
             case 2:
-                text = "text good";
-                profit = modules.Count(C => C == 't') * 100;
+                text = "Preach";
+                cost = numads == 2 ? 500 : 0;
                 break;
+
+            case 3:
+                text = "Special Snowflake";
+                cost = numtext == 1 && numimages == 1 && numads == 1 && numchatbot == 1 ? 1000 : 0;
+                break;
+
+            case 4:
+                text = "Search Party";
+                cost = numtext == 1 && numimages == 1 ? 1000 : 0;
+                break;
+
+            case 5:
+                text = "Robot Uprising";
+                cost = numchatbot > 2 ? 1000 : 0;
+                break;
+
+            case 6:
+                text = "Loves me";
+                cost = numNothing == 6 ? 4000 : 0;
+                break;
+
+            case 7:
+                text = "Sponsored Content";
+                cost = numads == 6 ? 300 : 0;
+                break;
+
+            case 8:
+                text = "Front Page";
+                cost = modules.ToCharArray()[1] == 'i' ? 200 : 0;
+                break;
+
+            case 9:
+                text = "Fight back!";
+                cost = (6 - numNothing) * 500;
+                break;
+
+            case 10:
+                text = "Coming soon";
+                cost = numads * 100;
+                break;
+
         }
 
-        return new LineItem(text, profit);
+        return new LineItem(text, cost);
+
     }
 
 }

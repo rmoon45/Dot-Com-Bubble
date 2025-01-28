@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 958fe40160fdfaa48b36653fc9fe9ab9, type: 3}
-  m_Name: Test Rule 1
+  m_Name: 3 dino
   m_EditorClassIdentifier: 
-  ruleId: 1
-  ruleName: Test Rule 1
-  ruleNewsDescription: It's Raining men!
-  ruleManualDescription: 'RAIN: If raning men, images are profitable and text is
-    not. If raning women, text is profitable and images are not'
-  difficulty: 1
+  ruleId: 3
+  ruleName: Test Rule 2
+  ruleNewsDescription: Dino Break Out!!!
+  ruleManualDescription: 'INVASIONS: If the invaders are glorps, add 2 images to
+    attract them'
+  difficulty: 3
