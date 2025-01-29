@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: b757f50081f6ff34188ac38b2a959afe
+guid: e556d6f2597862343893098278b193a2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8927145896549395126
-    second: greenest pastures_0
+      213: 5750469303479913163
+    second: Quack OS_0
+  - first:
+      213: 864258047453010051
+    second: Quack OS_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: greenest pastures_0
+      name: Quack OS_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 616
-        height: 408
+        x: 35
+        y: 7
+        width: 842
+        height: 377
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6baa9e515e793eb70800000000000000
-      internalID: 8927145896549395126
+      spriteID: bca45bd3d55cdcf40800000000000000
+      internalID: 5750469303479913163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Quack OS_1
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 35
+        width: 369
+        height: 347
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38895b87d167efb00800000000000000
+      internalID: 864258047453010051
       vertices: []
       indices: 
       edges: []
@@ -125,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5f794a591e126042846d93d57add1c3
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      greenest pastures_0: 8927145896549395126
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
